@@ -1,4 +1,33 @@
 \begin{frame}
 \frametitle{Referential Transparency}
-TODO
+\begin{itemize}
+  \item<1> referential transparency is a potential property of expressions
+  \item<2> functions provide users with referentially transparent expressions
+\end{itemize}
+\begin{block}<3>{The Recipe for Referential Transparency}
+An expression \lstinline$expr$ is referentially transparent if in all programs \lstinline$p$, all occurrences of \lstinline$expr$ in \lstinline$p$ can be replaced by the result assigned to \lstinline$expr$ without causing an observable effect on \lstinline$p$.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Referential Transparency}
+\begin{block}<1>{Example program}
+\begin{lstlisting}
+p = {
+  result = expr
+  result = expr
+  f(expr, expr)
+}
+\end{lstlisting}
+\end{block}
+\begin{block}<2>{Transformation of program}
+\begin{lstlisting}
+p = {
+  f(result, result)
+}
+\end{lstlisting}
+\end{block}
+\begin{block}<3>{}
+Is the program transformation observable?
+\end{block}
 \end{frame}

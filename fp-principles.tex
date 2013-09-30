@@ -11,6 +11,8 @@
 \usepackage{textcomp}
 \usepackage{verbatim}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usetikzlibrary{shapes.callouts,shadows, calc}
 
 \usetheme{Warsaw}
 \usecolortheme{lily}
@@ -27,13 +29,23 @@
 \author{
   {\small Tony Morris\\}
 }
+
+\xdefinecolor{darkgreen}{rgb}{0,0.35,0}
+\lstset{
+  language=java,
+  basicstyle=\footnotesize\ttfamily,
+  stringstyle=\color{darkgreen}\ttfamily,
+  commentstyle=\color{gray}\ttfamily,
+  keywordstyle=\footnotesize\color{blue}\ttfamily,
+}
+
 \begin{document}
 \title{\large Functional Programming Principles for Practitioners}
 
 \date{{\footnotesize
   NICTA
 }}
-
+\setbeamercovered{transparent}
 \begin{frame}
   \titlepage
 \end{frame}
@@ -41,6 +53,8 @@
 \input{goals}
 \input{fp}
 \input{function}
-\input{referential-transparency.tex}
+\input{referential-transparency}
+\input{strings}
+\input{stringbuilders}
 
 \end{document}
