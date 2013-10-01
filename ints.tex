@@ -1,0 +1,155 @@
+\begin{frame}[fragile]
+\frametitle{Ints.java}
+\begin{lstlisting}
+class Ints {
+  private int value;
+
+  Ints(int value) { this.value = value; }
+
+  int decrement() {
+    value--;
+    return value;
+  }
+
+  int reciprocate() {
+    int r = `decrement()`;
+    return `r` == 0 ? 0 : 1 / `r`;
+  }
+
+  public static void main(String[] args) {
+    Ints i = new Ints(3);
+    System.out.println(i.reciprocate());
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(4.0,5.0)$); 
+\node[note,draw,callout relative pointer={($(aa)-(6.5,6.2)$)},right] at (aa) {is \lstinline$decrement$ a function?};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ints.java}
+\begin{lstlisting}
+class Ints {
+  private int value;
+
+  Ints(int value) { this.value = value; }
+
+  int decrement() {
+    value--;
+    return value;
+  }
+
+  int reciprocate() {
+    // int r = decrement();
+    return `decrement()` == 0 ? 0 : 1 / `decrement()`;
+  }
+
+  public static void main(String[] args) {
+    Ints i = new Ints(3);
+    System.out.println(i.reciprocate());
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(4.0,5.0)$); 
+\node[note,draw,callout relative pointer={($(aa)-(6.5,6.6)$)},right] at (aa) {did the program change?};
+\node[note,draw,callout relative pointer={($(aa)-(2.5,6.6)$)},right] at (aa) {did the program change?};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{decrement}
+\begin{block}{}
+\begin{lstlisting}
+> java Ints
+0
+
+> java Ints
+1
+\end{lstlisting}
+\end{block}
+\begin{itemize}
+  \item<1> the program refactoring produced a different result
+  \item<2> \lstinline$decrement$ is not a function
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ints.java}
+\begin{lstlisting}
+class Ints {
+  private int value;
+
+  Ints(int value) { this.value = value; }
+
+  int decrement() {
+    value--;
+    return value;
+  }
+
+  int reciprocate() {
+    int r = `decrement()`;
+    return `r` == 0 ? 0 : 1 / `r`;
+  }
+
+  public static void main(String[] args) {
+    Ints i = new Ints(`2`);
+    System.out.println(i.reciprocate());
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(6.0,3.0)$); 
+\node[note,draw,callout relative pointer={($(aa)-(8.9,4.2)$)},right] at (aa) {change \lstinline$3$ to \lstinline$2$};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ints.java}
+\begin{lstlisting}
+class Ints {
+  private int value;
+
+  Ints(int value) { this.value = value; }
+
+  int decrement() {
+    value--;
+    return value;
+  }
+
+  int reciprocate() {
+    // int r = decrement();
+    return `decrement()` == 0 ? 0 : 1 / `decrement()`;
+  }
+
+  public static void main(String[] args) {
+    Ints i = new Ints(2);
+    System.out.println(i.reciprocate());
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(4.0,5.0)$); 
+\node[note,draw,callout relative pointer={($(aa)-(6.5,6.6)$)},right] at (aa) {perform the refactoring};
+\node[note,draw,callout relative pointer={($(aa)-(2.5,6.6)$)},right] at (aa) {perform the refactoring};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{decrement}
+\begin{block}{}
+\begin{lstlisting}
+> java Ints
+1
+
+> java Ints
+Exception in thread "main"
+  java.lang.ArithmeticException: / by zero
+\end{lstlisting}
+\end{block}
+\begin{itemize}
+  \item<1> the program refactoring results in \textbf{an invalid program}
+\end{itemize}
+\end{frame}

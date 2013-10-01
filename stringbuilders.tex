@@ -1,17 +1,72 @@
 \begin{frame}[fragile]
 \frametitle{StringBuilders.java}
-\lstinputlisting[language=java]{source/StringBuilders1.java}
+\begin{lstlisting}
+class StringBuilders {
+  static void method(CharSequence x, CharSequence y) {
+    System.out.println(x);
+    System.out.println(y);
+  }
+
+  static void builderappend(String i) {
+    StringBuilder sb = new StringBuilder("abc");
+    StringBuilder expr = `sb.append(i)`;
+    method(`expr`, `expr`);
+  }
+
+  public static void main(String[] args) {
+    builderappend("xyz");
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(6.2,5.7)$); 
+\node[note,draw,callout relative pointer={($(aa)-(7.5,6.1)$)},right] at (aa) {is \lstinline$append$ a function?};
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{StringBuilders.java}
-\lstinputlisting[language=java]{source/StringBuilders2.java}
+\begin{lstlisting}
+class StringBuilders {
+  static void method(CharSequence x, CharSequence y) {
+    System.out.println(x);
+    System.out.println(y);
+  }
+
+  static void builderappend(String i) {
+    StringBuilder sb = new StringBuilder("abc");
+    // StringBuilder expr = sb.append(i);
+    method(`sb.append(i)`, `sb.append(i)`);
+  }
+
+  public static void main(String[] args) {
+    builderappend("xyz");
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(3.5,5.5)$);
+\node[note,draw,callout relative pointer={($(aa)-(5.5,6.0)$)},right] at (aa) {has the program changed?};
+\node[note,draw,callout relative pointer={($(aa)-(3.0,6.0)$)},right] at (aa) {has the program changed?};
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{append}
+\begin{block}{}
+\begin{lstlisting}
+> java StringBuilders
+abcxyz
+abcxyz
+
+> java StringBuilders
+abcxyzxyz
+abcxyzxyz
+\end{lstlisting}
+\end{block}
 \begin{itemize}
-  \item<1> the transformation \emph{has changed the program}
-  \item<2> therefore, \lstinline$append$ is \textbf{not a function}
+  \item<1> \textbf{Yes} the refactoring \emph{has changed the program}
+  \item<2> the program now prints a different value than previously
+  \item<3> therefore, \textbf{\lstinline$append$ is not a function}
 \end{itemize}
 \end{frame}

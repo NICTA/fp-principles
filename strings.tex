@@ -1,17 +1,69 @@
 \begin{frame}[fragile]
 \frametitle{Strings.java}
-\lstinputlisting[language=java]{source/Strings1.java}
+\begin{lstlisting}
+class Strings {
+  static void method(CharSequence x, CharSequence y) {
+    System.out.println(x);
+    System.out.println(y);
+  }
+
+  static void stringconcat(String i) {
+    String expr = `"abc".concat(i)`;
+    method(`expr`, `expr`);
+  }
+
+  public static void main(String[] args) {
+    stringconcat("xyz");
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(5,5.5)$); 
+\node[note,draw,callout relative pointer={($(aa)-(6.5,5.2)$)},right] at (aa) {is \lstinline$concat$ a function?};
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Strings.java}
-\lstinputlisting[language=java]{source/Strings2.java}
+\begin{lstlisting}
+class Strings {
+  static void method(CharSequence x, CharSequence y) {
+    System.out.println(x);
+    System.out.println(y);
+  }
+
+  static void stringconcat(String i) {
+    // String expr = "abc".concat(i);
+    method(`"abc".concat(i)`, `"abc".concat(i)`);
+  }
+
+  public static void main(String[] args) {
+    stringconcat("xyz");
+  }
+}
+\end{lstlisting}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (aa) at ($(a1)+(3.5,5.5)$);
+\node[note,draw,callout relative pointer={($(aa)-(5.5,5.5)$)},right] at (aa) {has the program changed?};
+\node[note,draw,callout relative pointer={($(aa)-(3.0,5.5)$)},right] at (aa) {has the program changed?};
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{concat}
+\begin{block}{}
+\begin{lstlisting}
+> java Strings
+abcxyz
+abcxyz
+
+> java Strings
+abcxyz
+abcxyz
+\end{lstlisting}
+\end{block}
 \begin{itemize}
-  \item<1> the program transformation has no observable effect in this case
-  \item<2> \lstinline$concat$ is a function because we can transform \emph{in all cases} with no observable effect
+  \item<1> the program refactoring has no observable effect in this case
+  \item<2> we can refactor \emph{in all cases} with no observable effect \textbf{because \lstinline$concat$ is a function}
 \end{itemize}
 \end{frame}
