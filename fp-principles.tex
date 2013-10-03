@@ -38,16 +38,9 @@
     \pgfusepath{use as bounding box}%
     \node[anchor=base west,rounded corners, fill=green!30,outer sep=0pt,inner xsep=0.2em, inner ysep=0.1em,  #1](a\theimage){\usebox{#2}};
   }%
-   %\tikzmark{a\theimage} <= can be used, but it leads to a spacing problem
-   % the best approach is to name the previous node with (a\theimage)
  \stepcounter{image}
 }
 \makeatother
-
-
-
-
-
 
 \usetheme{Warsaw}
 \usecolortheme{lily}
@@ -67,13 +60,19 @@
 
 \xdefinecolor{darkgreen}{rgb}{0,0.35,0}
 \lstset{
+  tabsize=2,
+  moredelim=**[is][\btHL]{`}{`}
+}
+\lstdefinestyle{java}{
   language=java,
-  basicstyle=\footnotesize\ttfamily,
+  basicstyle=\ttfamily,
   stringstyle=\color{darkgreen}\ttfamily,
   commentstyle=\color{gray}\ttfamily,
   keywordstyle=\footnotesize\color{blue}\ttfamily,
+  tabsize=2,
   moredelim=**[is][\btHL]{`}{`}
 }
+
 
 \begin{document}
 \title{\large Functional Programming Principles for Practitioners}
